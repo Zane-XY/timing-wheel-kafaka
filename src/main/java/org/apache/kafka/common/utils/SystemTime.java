@@ -31,6 +31,4 @@ public class SystemTime implements Time {
     public long nanoseconds() {
         return System.nanoTime();
     }
-
-
 }

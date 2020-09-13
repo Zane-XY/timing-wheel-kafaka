@@ -57,6 +57,7 @@ class SystemTimer(executorName: String,
    */
   def advanceClock(timeoutMs: Long): Boolean = {
     var bucket = delayQueue.poll(timeoutMs, TimeUnit.MILLISECONDS)
+    println("bucket " + bucket)
     if (bucket != null) {
       writeLock.lock()
       try {

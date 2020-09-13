@@ -39,6 +39,7 @@ private[timer] class TimerTaskList(taskCounter: AtomicInteger) extends Delayed {
   // Set the bucket's expiration time
   // Returns true if the expiration time is changed
   def setExpiration(expirationMs: Long): Boolean = {
+    //getAndSet returns the old value
     expiration.getAndSet(expirationMs) != expirationMs
   }
 
@@ -126,6 +127,12 @@ private[timer] class TimerTaskList(taskCounter: AtomicInteger) extends Delayed {
 
 }
 
+/**
+ * In the new design, we use own implementation of doubly linked list for the buckets in a timing wheel.
+ * The advantage of doubly linked list that it allows O(1) insert/delete of a list item if we have access link cells in a list.
+ *
+ *
+ */
 private[timer] class TimerTaskEntry(val timerTask: TimerTask, val expirationMs: Long) extends Ordered[TimerTaskEntry] {
 
   @volatile

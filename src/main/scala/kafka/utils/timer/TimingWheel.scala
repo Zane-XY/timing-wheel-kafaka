@@ -158,9 +158,10 @@ private[timer] class TimingWheel(tickMs: Long, wheelSize: Int, startMs: Long, ta
   def advanceClock(timeMs: Long): Unit = {
     if (timeMs >= currentTime + tickMs) {
       currentTime = timeMs - (timeMs % tickMs)
-
+      println("timing wheel advanceClock currentTime " + currentTime)
       // Try to advance the clock of the overflow wheel if present
-      if (overflowWheel != null) overflowWheel.advanceClock(currentTime)
+      if (overflowWheel != null)
+        overflowWheel.advanceClock(currentTime)
     }
   }
 }

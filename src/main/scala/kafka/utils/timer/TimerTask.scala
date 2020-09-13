@@ -1,5 +1,6 @@
 package kafka.utils.timer
 
+//comment the wrapper of TimerTaskEntry, provides cancel operation
 trait TimerTask extends Runnable {
 
   val delayMs: Long // timestamp in millisecond
